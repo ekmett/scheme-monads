@@ -34,6 +34,7 @@
 (define-curried (make-comonad-fmap tinu rats f) 
   (rats (compose f tinu)))
 
+;; these can obviously be simplified and coalesced into a coherent whole
 (define-curried (functor fmap) 
   (list '() fmap))
 
@@ -42,6 +43,12 @@
 
 (define-curried (applicative unit ap)
   (list '() (make-applicative-fmap unit ap) (list unit ap)))
+
+(define-curried (functor-zero fmap zero)
+  (list '() fmap '() (list zero)))
+
+(define-curried (functor-plus fmap zero plus)
+  (list '() fmap '() (list zero plus)))
 
 (define-curried (alternative unit ap zero plus)
   (list '() (make-applicative-fmap unit ap) (list unit ap) (list zero plus)))

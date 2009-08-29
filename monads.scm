@@ -18,7 +18,6 @@
 
 ;; comonads
 (load "product.scm")
-(load "cofree.scm")
 ;; (load "context.scm")
 ;; (load "exp.scm")
 
@@ -26,6 +25,7 @@
 ;; both
 (load "identity.scm")
 (load "yoneda.scm")
+(load "cofree.scm")
 ;; (load "coyoneda.scm")
 ;; (load "density.scm")
 ;; (load "codensity.scm")
