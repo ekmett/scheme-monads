@@ -5,7 +5,10 @@
 (define-syntax curried
   (syntax-rules ()
     ((_ () body)
-      (lambda args (apply body args)))
+     (lambda args
+         (if (null? args)
+             body
+             apply body args)))
     ((_ (arg) body)
       (letrec 
         ((partial-application 
@@ -14,7 +17,7 @@
                 partial-application
                 (let ((arg (car args)) 
                       (rest (cdr args)))
-                  (if (null? rest) 
+                  (if (null? rest)
                       body 
                       (apply body rest)))))))
         partial-application))
@@ -37,5 +40,7 @@
   (syntax-rules ()
     ((define-curried (name args ...) body)
        (define name (curried (args ...) body)))
+    ((define-curried (name) body)
+       (define name (curried () body)))
     ((define-curried name body)
        (define name body))))

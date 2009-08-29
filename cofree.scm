@@ -1,6 +1,7 @@
 (load "base.scm")
 (load "list.scm") ;; for test
 
+
 ;; the cofree comonad has the form (a . f (a . f (a . f (....))))
 ;; the prod-type ideal comonad is categorically dual to the free monad.
 
